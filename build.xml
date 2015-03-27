@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="QATestProj" basedir=".">
+
+	<property name="src.dir" value="./src" />
+	 <property name="lib.dir" value="./lib" />
+	 <property name="build.dir" value="./build" />
+	 <property name="report.dir" value="./report" />
+	 <property name="classes.dir" value="${build.dir}/classes" />
+	 <property name="jar.dir" value="${build.dir}/jar" />
+	 <property name="user.dir" value="." />
+	 <property name="main-class" value="WUIAdminLoginTest" />
+	 <!--property name="test.dir" value="./src/com/tests" -->
+	
+	
+	<path id="classpath">
+		<pathelement location="${build.dir}" />
+	    	<fileset dir="${lib.dir}">
+	        	<include name="**/*.jar" />
+	     	</fileset>
+	</path>
+	
+	<target name="clean">
+        <!-- clean report and build dir"/-->
+       <echo message="Cleaning build dir..."/>
+	   <delete failonerror="false" dir="${build.dir}"/>
+	   <delete failonerror="false" dir="${report.dir}"/>			
+    </target>
+	
+	<target name="init">
+	        <!-- Create  /-->
+	       <echo message="Initializing directories..."/>
+		   <mkdir dir="${build.dir}"/>
+		   <mkdir dir="${report.dir}"/>
+    </target>
+		
+
+    <target name="compile">
+    	<echo message="Initializing directories..."/>
+    	<mkdir dir="${build.dir}"/>
+    	<mkdir dir="${report.dir}"/>
+    	<echo message="Compiling..."/>
+        <mkdir dir="${classes.dir}"/>
+        <javac classpathref="classpath" includeantruntime="true" srcdir="${src.dir}" destdir="${classes.dir}"/>
+    </target>
+	
+	<target name="jar" depends="compile">
+	        <mkdir dir="${jar.dir}" />
+	        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+	            <manifest>
+	                <attribute name="main-class" value="${main-class}" />
+	            </manifest>
+	        </jar>
+	    </target>
+
+   
+	<target name="run" depends="jar">
+	    <java classname="${main-class}" fork="true" >
+	        <classpath>
+	            <path refid="classpath" />
+	            <path location="${jar.dir}/${ant.project.name}.jar" />
+	        </classpath>
+	    </java>
+	</target>
+	
+</project>
