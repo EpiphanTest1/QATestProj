@@ -6,8 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.opera.core.systems.OperaDriver;
+import com.opera.core.systems.OperaProfile;
 
 import org.testng.Assert;
 
@@ -16,9 +18,14 @@ public class OpenOpera {
 	public static WebDriver createOpera() {
 		
 		System.out.print("Open Opera Browser!!\n");
-		 
+		OperaProfile profile = new OperaProfile();  // fresh, random profile
+		profile.preferences().set("User Prefs", "Ignore Unrequested Popups", false);
+
+		DesiredCapabilities capabilities = DesiredCapabilities.opera();
+		capabilities.setCapability("opera.profile", profile);
+
 		// Create a new instance of the Firefox driver
-		WebDriver driver = new OperaDriver();
+		WebDriver driver = new OperaDriver(capabilities);
 		return driver;
 		
 	}

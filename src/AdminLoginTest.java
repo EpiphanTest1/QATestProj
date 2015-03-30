@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 public class AdminLoginTest {
 
-	public static void login(WebDriver driver) {
+	public static void login(WebDriver driver,String deviceIP) {
 		// TODO Auto-generated method stub
 		String username = "admin";
         String password =  ""; // no password by default
@@ -17,7 +17,7 @@ public class AdminLoginTest {
         
         //Launch the WUI and login as admin(default)
         //Build URL string
-        String URL = "http://" + username + ":" + password + "@" + "192.168.0.182/admin";
+        String URL = "http://" + username + ":" + password + "@" + deviceIP +"/admin";
         driver.get(URL);
         
       //implicit wait for the channel to load
