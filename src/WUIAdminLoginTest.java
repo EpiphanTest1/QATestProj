@@ -26,19 +26,19 @@ public class WUIAdminLoginTest {
 		}
 		
 		
-		//Opera has a known issue opening user profile, so it fails
-		/*try {
-			//Create Webdriver instance for Opera
+		
+		try {
+			//Create Webdriver instance for Chrome
 			WebDriver driver = OpenChrome.createChrome();
 			//Run Admin login test to device using Chrome Browser
 			AdminLoginTest.login(driver, pearlIP);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
-		//Opera currently broken
-		try {
+		//Opera has a known issue opening user profile, so it fails
+		/*try {
 			//Create Webdriver instance for Opera
 			WebDriver driver = OpenOpera.createOpera();
 			//Run Admin login test to device using Opera Browser
@@ -46,7 +46,7 @@ public class WUIAdminLoginTest {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		
